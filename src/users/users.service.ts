@@ -55,7 +55,7 @@ export class UsersService {
     });
   }
 
-  async findOne(id: number) {
+  async findById(id: number) {
     try {
       const isUserExist = await this._userRepo.findOne({
         where: {
@@ -74,7 +74,7 @@ export class UsersService {
 
   async update(id: number, updateUserDto: UpdateUserDto) {
     try {
-      const user = await this.findOne(id);
+      const user = await this.findById(id);
       const { email, name, password } = updateUserDto;
 
       if (password) {
@@ -114,7 +114,7 @@ export class UsersService {
 
   async remove(id: number) {
     try {
-      const user = await this.findOne(id);
+      const user = await this.findById(id);
 
       if (user) {
         await this._userRepo

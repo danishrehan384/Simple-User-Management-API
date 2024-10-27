@@ -5,6 +5,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { UserRoles } from 'utils/roles.enum';
 
 @Entity()
 export class User {
@@ -28,6 +29,13 @@ export class User {
     default: '',
   })
   password: string;
+
+  @Column({
+    type: 'enum',
+    enum: UserRoles,
+    default: UserRoles.USER
+  })
+  role: UserRoles;
 
   @CreateDateColumn({
     type: 'datetime',
